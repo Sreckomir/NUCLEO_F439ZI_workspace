@@ -55,4 +55,39 @@
 ///   @enduml
 void LEDM_v_Main();
 
+/// @brief Function used to read the message and manipulate the LEDs
+///
+/// @pre Message with adequate ID is received
+/// @post Led is toggled
+/// @param None
+///
+/// @return None
+///
+/// @globals None
+///
+/// @InOutCorelation Function receives a message based on an ID and controls the LED module
+/// @callsequence
+///   @startuml "LEDM_v_GetMessage.png"
+///     title "Sequence diagram for function LEDM_v_GetMessage"
+///       -> LEDM: Calls a function\n to get a message and manipulate the module
+///       LEDM++
+///         LEDM -> MSGM: MSGM_e_MessageRetreive(...)
+///         LEDM--
+///         MSGM++
+///         rnote over MSGM: Retrieves a message \nbased on an ID parameter
+///         MSGM -> LEDM: Returns e_MessageReturn type with a valid word
+///         MSGM--
+///         LEDM++
+///           alt LED_ON case
+///             rnote over LEDM: Turns on LED using UART2
+///           else LED_OFF case
+///             rnote over LEDM: Turns off LED using UART2
+///           else default case
+///             rnote over LEDM: Breaks out of the switch case
+///           end
+///             <- LEDM
+///             LEDM--
+///   @enduml
+void LEDM_v_GetMessage();
+
 #endif /* LEDM_H_ */

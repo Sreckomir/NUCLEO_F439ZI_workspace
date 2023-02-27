@@ -26,6 +26,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "LEDM.h"
+#include "UARTM.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -148,7 +149,9 @@ void StartLEDTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-	  LEDM_v_Main();
+    LEDM_v_GetMessage();
+    HAL_Delay(3000);
+//	  LEDM_v_Main();
   }
   /* USER CODE END StartLEDTask */
 }
